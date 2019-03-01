@@ -42,9 +42,6 @@ function create () {
   // Anchor can be moved using setOrigin
   this.add.image(0, 0, 'sky').setOrigin(0, 0);
 
-  this.add.image(440, 350, 'star');
-  this.add.image(30, 30, 'star');
-
   // Create list of static physics objects
   platforms = this.physics.add.staticGroup();
   platforms.create(400, 568, 'ground').setScale(2).refreshBody(); // bottom = twice as large

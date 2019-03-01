@@ -48,7 +48,7 @@ function create () {
   platforms.create(600, 400, 'ground');
   platforms.create(50, 250, 'ground');
   platforms.create(750, 220, 'ground');
-  platforms.create(-184, 45, 'ground').setOrigin(0, 0).refreshBody();   // Need to refresh physics body
+  platforms.create(-195, 45, 'ground').setOrigin(0, 0).refreshBody();   // Need to refresh physics body
 
   // Creating a player
   player = this.physics.add.sprite(100, 450, 'dude');

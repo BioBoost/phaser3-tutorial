@@ -115,6 +115,13 @@ function create () {
     star.disableBody(true, true);
     score += 10;
     scoreText.setText('score: ' + score);
+
+    if (stars.countActive(true) === 0) {
+      // Spawn the stars again
+      stars.children.iterate(function (star) {
+        star.enableBody(true, star.x, 0, true, true);
+      });
+    }
   }, null, this);
 
   // Add score

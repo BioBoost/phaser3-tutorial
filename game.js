@@ -107,6 +107,11 @@ function create () {
 
   // Make the stars collide with the platforms, so they dont fall through
   this.physics.add.collider(stars, platforms);
+
+  // Allow player to collect the stars
+  this.physics.add.overlap(player, stars, function(player, star) {
+    star.disableBody(true, true);
+  }, null, this);
 }
 
 function update () {

@@ -18,6 +18,8 @@ var config = {
 
 var game = new Phaser.Game(config);
 var platforms;    // Static Physics Groups (dont move but can collide)
+var cursors;      // Control events
+const PLAYER_SPEED = 160;
 
 function preload () {
   // Assets are accessible via asset key: sky, ground, ...
@@ -86,7 +88,27 @@ function create () {
   // The effect of this will be that player will not
   // pass through platforms anymore
   this.physics.add.collider(player, platforms);
+
+  // Register events for keyboard
+  cursors = this.input.keyboard.createCursorKeys();
 }
 
 function update () {
+  // Check for keyboard events
+  if (cursors.left.isDown) {
+      player.setVelocityX(-PLAYER_SPEED);
+      player.anims.play('left', true);
+  }
+  else if (cursors.right.isDown) {
+      player.setVelocityX(PLAYER_SPEED);
+      player.anims.play('right', true);
+  }
+  else {
+      player.setVelocityX(0);
+      player.anims.play('turn');
+  }
+
+  if (cursors.up.isDown && player.body.touching.down) {
+      player.setVelocityY(-330);  // Jump
+  }
 }

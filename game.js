@@ -21,6 +21,7 @@ var platforms;    // Static Physics Groups (dont move but can collide)
 var cursors;      // Control events
 const PLAYER_SPEED = 160;
 var stars;
+var score = 0;
 var scoreText;
 
 function preload () {
@@ -112,6 +113,8 @@ function create () {
   // Allow player to collect the stars
   this.physics.add.overlap(player, stars, function(player, star) {
     star.disableBody(true, true);
+    score += 10;
+    scoreText.setText('score: ' + score);
   }, null, this);
 
   // Add score

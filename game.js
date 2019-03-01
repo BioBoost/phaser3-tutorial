@@ -58,6 +58,9 @@ function create () {
   // Does not stop from falling through platforms
   player.setCollideWorldBounds(true);
 
+  // Add gravity to the player
+  player.body.setGravityY(300);   // body is ref to physics body
+
   this.anims.create({
       key: 'left',
       frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),

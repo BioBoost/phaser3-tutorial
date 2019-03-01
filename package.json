@@ -1,0 +1,24 @@
+{
+  "name": "phaser-tutorial",
+  "version": "0.1.0",
+  "description": "Just following the phaser tutorial and experimenting a little.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BioBoost/phaser3-tutorial.git"
+  },
+  "keywords": [
+    "phaser",
+    "tutorial",
+    "game"
+  ],
+  "author": "Nico De Witte <nico.dewitte@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BioBoost/phaser3-tutorial/issues"
+  },
+  "homepage": "https://github.com/BioBoost/phaser3-tutorial#readme"
+}

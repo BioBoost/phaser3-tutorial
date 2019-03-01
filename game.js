@@ -20,6 +20,7 @@ var game = new Phaser.Game(config);
 var platforms;    // Static Physics Groups (dont move but can collide)
 var cursors;      // Control events
 const PLAYER_SPEED = 160;
+var stars
 
 function preload () {
   // Assets are accessible via asset key: sky, ground, ...
@@ -91,6 +92,24 @@ function create () {
 
   // Register events for keyboard
   cursors = this.input.keyboard.createCursorKeys();
+
+  // Create dynamic group of star physics bodies
+  // No static because they are dropped from the air, so they move
+  // Spawns all the stars in a row at the top of the screen
+  // But they are dynamic and thus affected by gravity, making them fall.
+  stars = this.physics.add.group({
+    key: 'star',
+    repeat: 11,   // 12 in total
+    setXY: { x: 12, y: 0, stepX: 70 }
+  });
+
+  // Each star is given a random bounce value between 0.4 and 0.8
+  stars.children.iterate(function (child) {
+    child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+  });
+
+  // Make the stars collide with the platforms, so they dont fall through
+  this.physics.add.collider(stars, platforms);
 }
 
 function update () {

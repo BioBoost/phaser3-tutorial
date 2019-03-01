@@ -109,6 +109,6 @@ function update () {
   }
 
   if (cursors.up.isDown && player.body.touching.down) {
-      player.setVelocityY(-330);  // Jump
+      player.setVelocityY(-500);  // Jump if standing on something
   }
 }

@@ -138,6 +138,16 @@ function create () {
 
   // Adding empty bombs group (dynamic - will bounce around)
   bombs = this.physics.add.group();
+  
+  // Bomb collisions
+  this.physics.add.collider(bombs, platforms);
+  this.physics.add.collider(player, bombs, function(player, bomb) {
+    // Pause the game and make the player red (dead)
+    this.physics.pause();
+    player.setTint(0xff0000);
+    player.anims.play('turn');
+    gameOver = true;
+  }, null, this);  
 }
 
 function update () {

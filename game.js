@@ -17,6 +17,7 @@ var config = {
 };
 
 var game = new Phaser.Game(config);
+var platforms;    // Static Physics Groups (dont move but can collide)
 
 function preload () {
   // Assets are accessible via asset key: sky, ground, ...
@@ -39,6 +40,14 @@ function create () {
   this.add.image(0, 0, 'sky').setOrigin(0, 0);
 
   this.add.image(400, 300, 'star');   // Center of screen
+
+  // Create list of static physics objects
+  platforms = this.physics.add.staticGroup();
+  platforms.create(400, 568, 'ground').setScale(2).refreshBody(); // bottom = twice as large
+  platforms.create(600, 400, 'ground');
+  platforms.create(50, 250, 'ground');
+  platforms.create(750, 220, 'ground');
+  platforms.create(-184, 45, 'ground').setOrigin(0, 0);
 }
 
 function update () {

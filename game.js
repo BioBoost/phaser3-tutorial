@@ -23,6 +23,7 @@ const PLAYER_SPEED = 160;
 var stars;
 var score = 0;
 var scoreText;
+var bombs;
 
 function preload () {
   // Assets are accessible via asset key: sky, ground, ...
@@ -121,11 +122,22 @@ function create () {
       stars.children.iterate(function (star) {
         star.enableBody(true, star.x, 0, true, true);
       });
+
+      // Spawn a bomb if all stars are collected
+      // Spawn the bouncing bomb on the opposite side of the player
+      var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+      var bomb = bombs.create(x, 16, 'bomb');
+      bomb.setBounce(1);  // Keep bouncing
+      bomb.setCollideWorldBounds(true);
+      bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
     }
   }, null, this);
 
   // Add score
   scoreText = this.add.text(500, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+
+  // Adding empty bombs group (dynamic - will bounce around)
+  bombs = this.physics.add.group();
 }
 
 function update () {

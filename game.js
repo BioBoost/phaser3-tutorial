@@ -80,6 +80,12 @@ function create () {
       frameRate: 10,
       repeat: -1
   });
+
+  // Add collision detection between player and platforms.
+  // Bit of automagic that create separation
+  // The effect of this will be that player will not
+  // pass through platforms anymore
+  this.physics.add.collider(player, platforms);
 }
 
 function update () {

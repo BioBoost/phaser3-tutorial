@@ -20,7 +20,8 @@ var game = new Phaser.Game(config);
 var platforms;    // Static Physics Groups (dont move but can collide)
 var cursors;      // Control events
 const PLAYER_SPEED = 160;
-var stars
+var stars;
+var scoreText;
 
 function preload () {
   // Assets are accessible via asset key: sky, ground, ...
@@ -112,6 +113,9 @@ function create () {
   this.physics.add.overlap(player, stars, function(player, star) {
     star.disableBody(true, true);
   }, null, this);
+
+  // Add score
+  scoreText = this.add.text(500, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 }
 
 function update () {
